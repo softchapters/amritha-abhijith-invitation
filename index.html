@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Abhijith & Amritha</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:wght@300;400;500;600&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html,body{
+width:100%;
+height:100%;
+overflow:hidden;
+background:#000;
+font-family:'Cormorant Garamond',serif;
+}
+
+/* PAGE SYSTEM */
+
+.page{
+position:fixed;
+inset:0;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:30px;
+background:url('background.PNG') center center/cover no-repeat;
+transition:1.2s ease;
+}
+
+.page::before{
+content:"";
+position:absolute;
+inset:0;
+background:rgba(0,0,0,.22);
+}
+
+.page>*{
+position:relative;
+z-index:2;
+}
+
+.hidden{
+opacity:0;
+pointer-events:none;
+transform:scale(1.05);
+}
+
+/* PAGE 1 */
+
+.tagline{
+
+font-size:1rem;
+letter-spacing:4px;
+text-transform:uppercase;
+
+color:#f8edd1;
+
+margin-bottom:30px;
+
+animation:fadeUp 2s ease;
+}
+
+.enter-btn{
+
+padding:10px 18px;
+
+border:1px solid #f8edd1;
+
+border-radius:40px;
+
+background:transparent;
+
+color:#f8edd1;
+
+font-size:.95rem;
+
+letter-spacing:1px;
+
+cursor:pointer;
+
+transition:.3s;
+}
+
+.enter-btn:hover{
+transform:scale(1.05);
+}
+  /* PAGE 2 */
+
+.magic-text{
+
+color:#f8edd1;
+
+font-family:'Cinzel',serif;
+
+font-size:1.6rem;
+
+letter-spacing:5px;
+
+line-height:2;
+
+text-transform:uppercase;
+
+opacity:0;
+
+animation:
+fadeInText 2.5s ease forwards,
+floatText 6s ease-in-out infinite;
+}
+
+.gold-line{
+
+width:180px;
+height:1px;
+
+margin-top:30px;
+
+background:
+linear-gradient(
+to right,
+transparent,
+#d4af37,
+transparent
+);
+
+opacity:0;
+
+animation:
+lineAppear 2s ease forwards;
+
+animation-delay:1s;
+}
+
+/* PAGE 3 */
+
+#page3{
+background:#000;
+overflow-y:auto;
+}
+
+#page3::before{
+display:none;
+}
+
+.invitation-wrap{
+
+width:100%;
+max-width:650px;
+
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+
+.invitation-frame{
+width:100%;
+display:block;
+}
+
+.location-btn{
+
+margin-top:-150px;
+margin-bottom:120px;
+
+padding:10px 28px;
+
+border:1px solid #d4af37;
+border-radius:40px;
+
+background:rgba(0,0,0,.20);
+
+color:#f8edd1;
+text-decoration:none;
+
+font-size:1rem;
+}
+
+.countdown-box{
+
+margin-top:-30px;
+
+width:85%;
+
+padding:12px;
+
+border:1px solid rgba(212,175,55,.8);
+
+border-radius:28px;
+
+background:rgba(0,0,0,.20);
+
+color:#f8edd1;
+
+text-align:center;
+}
+
+.countdown-title{
+font-size:.95rem;
+margin-bottom:6px;
+}
+
+#timer{
+font-size:1.1rem;
+letter-spacing:1px;
+white-space:nowrap;
+}
+
+/* ANIMATIONS */
+
+@keyframes fadeUp{
+
+from{
+opacity:0;
+transform:translateY(20px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+@keyframes fadeInText{
+
+0%{
+opacity:0;
+transform:translateY(40px) scale(.95);
+}
+
+100%{
+opacity:1;
+transform:translateY(0) scale(1);
+}
+
+}
+
+@keyframes floatText{
+
+0%{
+transform:translateY(0);
+}
+
+50%{
+transform:translateY(-8px);
+}
+
+100%{
+transform:translateY(0);
+}
+
+}
+
+@keyframes lineAppear{
+
+from{
+opacity:0;
+width:0;
+}
+
+to{
+opacity:1;
+width:180px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+<!-- PAGE 1 -->
+
+<section id="page1" class="page">
+
+<div class="tagline">
+A Beautiful Moment Awaits
+</div>
+
+<button class="enter-btn" onclick="startInvitation()">
+OPEN INVITATION
+</button>
+
+</section>
+
+<!-- PAGE 2 -->
+
+<section id="page2" class="page hidden">
+
+<div class="magic-text">
+JOIN US AS WE CELEBRATE<br>
+THE ENGAGEMENT OF
+</div>
+
+<div class="gold-line"></div>
+
+</section>
+
+<!-- PAGE 3 -->
+
+<section id="page3" class="page hidden">
+
+<div class="invitation-wrap">
+
+<img
+src="invitation-frame.PNG"
+class="invitation-frame"
+alt="Invitation">
+
+<a
+class="location-btn"
+href="https://maps.app.goo.gl/8pVgrK9qQFFdyAyM7?g_st=ic"
+target="_blank">
+
+VIEW LOCATION
+
+</a>
+
+<div class="countdown-box">
+
+<div class="countdown-title">
+Counting Down To Our Day
+</div>
+
+<div id="timer"></div>
+
+</div>
+
+</div>
+
+</section>
+
+<script>
+
+function startInvitation(){
+
+const music =
+document.getElementById("music");
+
+music.play().catch(()=>{});
+
+document
+.getElementById("page1")
+.classList.add("hidden");
+
+document
+.getElementById("page2")
+.classList.remove("hidden");
+
+setTimeout(()=>{
+
+document
+.getElementById("page2")
+.classList.add("hidden");
+
+document
+.getElementById("page3")
+.classList.remove("hidden");
+
+},6500);
+
+}
+
+/* Pause music when tab hidden */
+
+document.addEventListener(
+"visibilitychange",
+()=>{
+
+const music =
+document.getElementById("music");
+
+if(document.hidden){
+
+music.pause();
+
+}else{
+
+music.play().catch(()=>{});
+
+}
+
+});
+
+/* Countdown */
+
+const target =
+new Date(
+"September 12, 2026 11:00:00"
+).getTime();
+
+setInterval(()=>{
+
+const now =
+new Date().getTime();
+
+const diff =
+target - now;
+
+const d =
+Math.floor(
+diff/(1000*60*60*24)
+);
+
+const h =
+Math.floor(
+(diff%(1000*60*60*24))
+/
+(1000*60*60)
+);
+
+const m =
+Math.floor(
+(diff%(1000*60*60))
+/
+(1000*60)
+);
+
+const s =
+Math.floor(
+(diff%(1000*60))
+/
+1000
+);
+
+document
+.getElementById("timer")
+.innerHTML =
+`${d}D : ${h}H : ${m}M : ${s}S`;
+
+},1000);
+
+</script>
+
+</body>
+</html>
